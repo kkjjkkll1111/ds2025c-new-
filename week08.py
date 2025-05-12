@@ -77,7 +77,9 @@ pre_order(root)
 
 print()
 
-target = 10
+# 찾는 값 입력
+target = int(input("찾는 값 입력"))
+
 if search(root, target):
     print(f"{target}을(를) 찾았습니다.")
 else:
