@@ -4,6 +4,18 @@ def post_order(node):
         post_order(node.right)
         print(node.data, end=" -> ")
 
+def in_order(node):
+    if node:
+        in_order(node.left)
+        print(node.data, end=' -> ')
+        in_order(node.right)
+
+def pre_order(node):
+    if node:
+        print(node.data, end=' -> ')
+        pre_order(node.left)
+        pre_order(node.right)
+
 class TreeNode:
     def __init__(self):
         self.left = None
@@ -59,6 +71,12 @@ print("BST 구성 완료")
 
 post_order(root)
 print()
+in_order(root)
+print()
+pre_order(root)
+
+print()
+
 target = 10
 if search(root, target):
     print(f"{target}을(를) 찾았습니다.")
