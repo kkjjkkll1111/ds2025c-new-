@@ -65,10 +65,17 @@ def delete(node, value):
     elif value > node.data:
         node.right = delete(node.right, value)
     else: # 삭제할 노드 발견
+        #자식노드가 1개 이하인 경우
         if node.left == None:
             return node.right
         elif node.right == None:
             return node.left
+        # 자식노드가 2개인 경우
+        min_larger_node = node.right
+        while min_larger_node.left:
+            min_larger_node = min_larger_node.left
+        node.data = min_larger_node.data
+        node.right = delete(node.right, min_larger_node.data)
     return node
 
 
