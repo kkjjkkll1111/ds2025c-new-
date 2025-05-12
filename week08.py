@@ -57,9 +57,25 @@ def search(root, target):
                 return False
             current = current.right
 
+def delete(node, value):
+    if node is None:
+        return None
+    if value < node.data:
+        node.left = delete(node.left, value)
+    elif value > node.data:
+        node.right = delete(node.right, value)
+    else: # 삭제할 노드 발견
+        if node.left == None:
+            return node.right
+        elif node.right == None:
+            return node.left
+    return node
+
+
+
 
 if __name__ == "__main__":
-    numbers  = [10, 15, 8, 3, 9]
+    numbers  = [10, 15, 8, 3, 9, 14]
     # numbers = [10, 15, 8, 3, 9, 1, 7, 100]
     root = None
 
@@ -74,14 +90,23 @@ print()
 in_order(root)
 print()
 pre_order(root)
-
 print()
 
 # 찾는 값 입력
-target = int(input("찾는 값 입력"))
+find_target = int(input("찾는 값 입력"))
 
-if search(root, target):
-    print(f"{target}을(를) 찾았습니다.")
+if search(root, find_target):
+    print(f"{find_target}을(를) 찾았습니다.")
 else:
-    print(f"{target}을(를) 찾지 못했습니다.")
+    print(f"{find_target}을(를) 찾지 못했습니다.")
 
+
+del_target = int(input("삭제할 값 입력"))
+root = delete(root, del_target)
+
+post_order(root)
+print()
+in_order(root)
+print()
+pre_order(root)
+print()
