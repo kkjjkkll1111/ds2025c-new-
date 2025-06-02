@@ -83,11 +83,15 @@ for cost, s, e in edges:
 
 
 mst_graph = Graph(graph_size)
-for w, s, e in mst_edges:
-	mst_graph.graph[s][e] = w
-	mst_graph.graph[e][s] = w
+for cost, s, e in mst_edges:
+	mst_graph.graph[s][e] = cost
+	mst_graph.graph[e][s] = cost
 
 print('최소 비용의 도로 연결도')
 print_graph(mst_graph)
 
 print(f"최소 비용 :  {mst_cost}")
+
+print("최소 간선 목록")
+for cost, s, e in mst_edges:
+	print(f"{cities[s]} --- {cities[e]} : {cost}")
